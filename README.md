@@ -1,2 +1,2 @@
-# -flight-management-api
+# flight-management-api
 Flight time management system
