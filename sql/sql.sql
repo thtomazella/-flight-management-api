@@ -14,21 +14,21 @@ USE flight_control;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE  users(
-    id       INT         auto_increment primary key,
-	nome      VARCHAR(200)  NOT NULL, 
-    nick      VARCHAR(20)   NOT NULL, 
-    senha     VARCHAR(200)  NOT NULL, 
-	cpf       VARCHAR(20)   DEFAULT NULL, 
-	cAnac     VARCHAR(10)   NOT NULL, 
-	cma       DATE NULL     DEFAULT NULL,
-	endereco  VARCHAR(200)  DEFAULT NULL,
-	numero    VARCHAR(10)   DEFAULT NULL,
-	bairro    VARCHAR(200)  DEFAULT NULL,
-	codCidade VARCHAR(5)    DEFAULT NULL,
-	fone1     VARCHAR(15)   DEFAULT NULL,
-	fone2     VARCHAR(15)   DEFAULT NULL,
-	celular   VARCHAR(15)   DEFAULT NULL,
-	email     VARCHAR(200)  DEFAULT NULL,
-    criadoem TIMESTAMP   DEFAULT current_timestamp()
+    id       	INT           auto_increment primary key,
+	name      	VARCHAR(200)  NOT NULL, 
+	type_user   VARCHAR(200)  NOT NULL, 
+    nick      	VARCHAR(20)   NOT NULL, 
+    password    VARCHAR(200)  NOT NULL, 
+	cpf       	VARCHAR(20)   DEFAULT NULL, 
+	id_anac 	VARCHAR(10)   NOT NULL, 
+	cma       	DATE NULL     DEFAULT NULL,
+	address  	VARCHAR(200)  DEFAULT NULL,
+	number   	VARCHAR(10)   DEFAULT NULL,
+	district    VARCHAR(200)  DEFAULT NULL,
+	id_city 	VARCHAR(5)    DEFAULT NULL,
+	contact     VARCHAR(15)   DEFAULT NULL,
+	cell   		VARCHAR(15)   DEFAULT NULL,
+	email     	VARCHAR(200)  DEFAULT NULL,
+    inclusion 	TIMESTAMP   DEFAULT current_timestamp()
  )ENGINE=INNODB;
 
