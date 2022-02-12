@@ -1,6 +1,7 @@
 package rotas
 
 import (
+	"flight/src/middlewares"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -20,7 +21,7 @@ func Configurar(r *mux.Router) *mux.Router {
 	//rotas = append(rotas, rotaLogin)
 	// rotas = append(rotas, rotasPublicacoes...)
 
-	/*	for _, rota := range rotas {
+	for _, rota := range rotas {
 		if rota.RequerAutenticacao {
 			r.HandleFunc(rota.URI,
 				middlewares.Logger(middlewares.Autenticar(rota.Funcao)),
@@ -29,6 +30,6 @@ func Configurar(r *mux.Router) *mux.Router {
 
 			r.HandleFunc(rota.URI, middlewares.Logger(rota.Funcao)).Methods(rota.Metodo)
 		}
-	}*/
-	return rotas
+	}
+	return r
 }
