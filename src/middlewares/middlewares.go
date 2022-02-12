@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"flight/src/authentication"
+	"flight/src/response"
 	"log"
 	"net/http"
 )
@@ -18,7 +19,7 @@ func Logger(proximaFuncao http.HandlerFunc) http.HandlerFunc {
 func Autenticar(proximaFuncao http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if erro := authentication.ValidarToken(r); erro != nil {
-			respostas.Erro(w, http.StatusUnauthorized, erro)
+			response.Erro(w, http.StatusUnauthorized, erro)
 			return
 		}
 		proximaFuncao(w, r)
