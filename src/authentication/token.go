@@ -2,6 +2,7 @@ package authentication
 
 import (
 	"errors"
+	"flight/src/config"
 	"fmt"
 	"net/http"
 	"strconv"
