@@ -1,14 +1,14 @@
 package rotas
 
 import (
-	"net/http"
+	"net/http" 
 )
 
 var rotasUsuarios = []Rota{
 	{ // Cadastro o usuario
 		URI:                "/usuarios",
 		Metodo:             http.MethodPost,
-		Funcao:             nil, // controllers.CriarUsuario,
+		Funcao:             nil, //controllers.CriarUsuario,
 		RequerAutenticacao: false,
 	},
 	/**
