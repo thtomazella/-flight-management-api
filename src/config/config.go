@@ -22,6 +22,7 @@ var (
 // Carregar vai inicializar as variáveis de ambiente
 func Carregar() {
 	var erro error
+
 	// Função para carregar o arquivo .env
 	if erro = godotenv.Load(); erro != nil {
 		log.Fatal(erro)
