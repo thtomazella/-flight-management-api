@@ -11,11 +11,11 @@ USE flight_control;
 
 -- CREATE TABLES
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS usuario;
 
-CREATE TABLE  users(
+CREATE TABLE  usuario(
     id       	INT           auto_increment primary key,
-	name      	VARCHAR(200)  NOT NULL, 
+	nome      	VARCHAR(200)  NOT NULL, 
 	type_user   VARCHAR(200)  NOT NULL, 
     nick      	VARCHAR(20)   NOT NULL, 
 	cpf       	VARCHAR(20)   DEFAULT NULL, 
@@ -28,7 +28,7 @@ CREATE TABLE  users(
 	contact     VARCHAR(15)   DEFAULT NULL,
 	cell   		VARCHAR(15)   DEFAULT NULL,
 	email     	VARCHAR(200)  NOT NULL,
-	password    VARCHAR(200)  NOT NULL, 
+	senha    	VARCHAR(200)  NOT NULL, 
     inclusion 	TIMESTAMP   DEFAULT current_timestamp()
  )ENGINE=INNODB;
 

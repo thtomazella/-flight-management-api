@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"errors"
 	"flight/src/authentication"
 	"flight/src/database"
 	"flight/src/models"
@@ -20,7 +21,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		response.Erro(w, http.StatusUnprocessableEntity, erro)
 	}
 
-	var usuario models.User
+	var usuario models.Usuario
 
 	if erro = json.Unmarshal(corpoRequisicao, &usuario); erro != nil {
 		response.Erro(w, http.StatusBadRequest, erro)
@@ -31,18 +32,19 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	if erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
 	}
+
 	defer db.Close()
 
-	repository := repository.NovoRepositoDeUsuarios(db)
-
-	usuarioSalvoNoBanco, erro := repository.BuscarPorEmail(usuario.Email)
+	repositorio := repository.NovoRepositoDeUsuarios(db)
+	usuarioSalvoNoBanco, erro := repositorio.BuscarPorEmail(usuario.Email)
 	if erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
 		return
 	}
 
-	if erro = security.VerificarSenha(usuarioSalvoNoBanco.Passsword, usuario.Passsword); erro != nil {
-		response.Erro(w, http.StatusUnauthorized, erro)
+	if erro = security.VerificarSenha(usuarioSalvoNoBanco.Senha, usuario.Senha); erro != nil {
+		// response.Erro(w, http.StatusUnauthorized, erro)
+		response.Erro(w, http.StatusInternalServerError, errors.New("Usuário ou senha não identificado!"))
 		return
 	}
 
