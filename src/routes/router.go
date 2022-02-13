@@ -2,7 +2,7 @@ package router
 
 import (
 	"flight/src/routes/rotas"
-	
+
 	"github.com/gorilla/mux"
 )
 
