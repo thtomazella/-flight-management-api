@@ -44,7 +44,7 @@ func (repositorio Usuarios) Buscar(nomeOuNick string) ([]models.Usuario, error) 
 	nomeOuNick = fmt.Sprintf("%%%s%%", nomeOuNick) //%nomeOuNick%
 
 	linhas, erro := repositorio.db.Query(
-		"SELECT id, nome, nick, email, criadoem FROM usuario where nome LIKE ? OR nick LIKE ?", nomeOuNick, nomeOuNick,
+		"SELECT id, nome, nick, id_Anac, email, inclusion FROM usuario where nome LIKE ? OR nick LIKE ?", nomeOuNick, nomeOuNick,
 	)
 	if erro != nil {
 		return nil, erro
@@ -58,6 +58,34 @@ func (repositorio Usuarios) Buscar(nomeOuNick string) ([]models.Usuario, error) 
 		if erro = linhas.Scan(&usuario.ID,
 			&usuario.Nome,
 			&usuario.Nick,
+			&usuario.Id_Anac,
+			&usuario.Email,
+			&usuario.Inclusion); erro != nil {
+			return nil, erro
+		}
+		usuarios = append(usuarios, usuario)
+	}
+	return usuarios, nil
+
+}
+
+// Buscar retorna todos os usuarios de nome ou nick
+func (repositorio Usuarios) BuscarTodos(codInt int) ([]models.Usuario, error) {
+
+	linhas, erro := repositorio.db.Query("SELECT id, nome, nick, id_Anac, email, inclusion FROM usuario WHERE id >= ? ORDER BY nome", codInt)
+	if erro != nil {
+		return nil, erro
+	}
+	defer linhas.Close()
+
+	var usuarios []models.Usuario
+	for linhas.Next() {
+		var usuario models.Usuario
+
+		if erro = linhas.Scan(&usuario.ID,
+			&usuario.Nome,
+			&usuario.Nick,
+			&usuario.Id_Anac,
 			&usuario.Email,
 			&usuario.Inclusion); erro != nil {
 			return nil, erro
@@ -69,8 +97,8 @@ func (repositorio Usuarios) Buscar(nomeOuNick string) ([]models.Usuario, error) 
 }
 
 // BuscarPorID retorna os dados de um usuário específico
-func (repositorio Usuarios) BuscarPorID(ID uint64) (models.Usuario, error) {
-	linhas, erro := repositorio.db.Query("SELECT id, nome, nick, email, criadoem from usuarios where id= ?", ID)
+/*func (repositorio Usuarios) BuscarPorID(ID uint64) (models.Usuario, error) {
+	linhas, erro := repositorio.db.Query("SELECT id, nome, id_anac, nick, email, inclusion from usuarios where id= ?", ID)
 	if erro != nil {
 		return models.Usuario{}, erro
 	}
@@ -82,6 +110,30 @@ func (repositorio Usuarios) BuscarPorID(ID uint64) (models.Usuario, error) {
 		if erro = linhas.Scan(&usuario.ID,
 			&usuario.Nome,
 			&usuario.Nick,
+			&usuario.Id_Anac,
+			&usuario.Email,
+			&usuario.Inclusion); erro != nil {
+			return models.Usuario{}, erro
+		}
+	}
+	return usuario, nil
+}*/
+
+// BuscarPorANAC retorna os dados de um usuário específico por ID ANAC
+func (repositorio Usuarios) BuscarPorCANAC(ID uint64) (models.Usuario, error) {
+	linhas, erro := repositorio.db.Query("SELECT id, nome, id_anac, nick, email, inclusion from usuarios where Id_Anac= ?", ID)
+	if erro != nil {
+		return models.Usuario{}, erro
+	}
+	defer linhas.Close()
+
+	var usuario models.Usuario
+
+	if linhas.Next() {
+		if erro = linhas.Scan(&usuario.ID,
+			&usuario.Nome,
+			&usuario.Nick,
+			&usuario.Id_Anac,
 			&usuario.Email,
 			&usuario.Inclusion); erro != nil {
 			return models.Usuario{}, erro
@@ -92,16 +144,44 @@ func (repositorio Usuarios) BuscarPorID(ID uint64) (models.Usuario, error) {
 
 // Atualizar  altera as informações de um usuário no banco de dados
 func (repositorio Usuarios) Atualizar(ID uint64, usuario models.Usuario) error {
-	statement, erro := repositorio.db.Prepare(
-		"UPDATE usuarios SET nome= ?, nick = ?, email= ? WHERE id = ?",
-	)
+	fmt.Println(ID, usuario)
+	statement, erro := repositorio.db.Prepare("UPDATE usuarios SET nome= ?, type_user = ?, nick = ?, email = ? WHERE id = ?")
+
+	/*
+	 cpf = ?,
+	 id_anac = ?,
+	 address = ?,
+	 district = ?,
+	 id_city = ?,
+	 contact= ?,
+	 cell = ?,
+	 email = ?
+
+	*/
 	if erro != nil {
 		return erro
 	}
 	defer statement.Close()
 
-	if _, erro := statement.Exec(usuario.Nome, usuario.Nick, usuario.Email, ID); erro != nil {
+	if _, erro := statement.Exec(
+		usuario.Nome,
+		usuario.Type_User,
+		usuario.Nick,
+		usuario.Email,
+		ID); erro != nil {
 		return erro
+
+		/**
+		  usuario.Cpf,
+		  		usuario.Id_Anac,
+		  		usuario.Address,
+		  		usuario.District,
+		  		usuario.Id_City,
+		  		usuario.Contact,
+		  		usuario.Cell,
+		  		usuario.Email,
+		*/
+
 	}
 	return nil
 

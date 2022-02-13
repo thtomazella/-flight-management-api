@@ -7,7 +7,7 @@ import (
 
 var rotasUsuarios = []Rota{
 	{ // Cadastro o usuario
-		URI:                "/usuario",
+		URI:                "/usuarios",
 		Metodo:             http.MethodPost,
 		Funcao:             controllers.CriarUsuario,
 		RequerAutenticacao: false,
@@ -16,28 +16,28 @@ var rotasUsuarios = []Rota{
 	{ // Busca Todos os Usuários
 		URI:                "/usuarios",
 		Metodo:             http.MethodGet,
-		Funcao:             nil, // controllers.BuscarUsuarios,
+		Funcao:             controllers.BuscarUsuarios,
 		RequerAutenticacao: true,
 	},
 
-	{ // Buscar somente um usuario por ID
+	{ // Buscar somente um usuario por CANAC
 		URI:                "/usuarios/{usuarioId}",
 		Metodo:             http.MethodGet,
-		Funcao:             nil, // controllers.BuscarUsuario,
+		Funcao:             controllers.BuscarUsuario,
 		RequerAutenticacao: true,
 	},
 
 	{ //Alterar o usuario por ID
 		URI:                "/usuarios/{usuarioId}",
 		Metodo:             http.MethodPut,
-		Funcao:             nil, // controllers.AtualizandoUsuario,
+		Funcao:             controllers.AtualizandoUsuario,
 		RequerAutenticacao: true,
 	},
 
 	{
 		URI:                "/usuarios/{usuarioId}/atualizar-senha",
 		Metodo:             http.MethodPost,
-		Funcao:             nil, // controllers.AtualizarSenha,
+		Funcao:             controllers.AtualizarSenha,
 		RequerAutenticacao: true,
 	},
 }

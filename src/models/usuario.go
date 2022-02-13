@@ -4,29 +4,28 @@ import (
 	"errors"
 	"flight/src/security"
 	"strings"
-	"time"
 
 	"github.com/badoux/checkmail"
 )
 
 // User representa um usuario utilizando o software
 type Usuario struct {
-	ID        uint64    `json: "id,omitempty"`
-	Nome      string    `json: "nome,omitempty"`
-	Type_User string    `json: "type_user,omitempty"`
-	Nick      string    `json: "nick,omitempty"`
-	Cpf       string    `json: "cpf"`
-	Id_Anac   string    `json: "id_anac,omitempty"`
-	Cma       time.Time `json: "cma"`
-	Address   string    `json: "address"`
-	Number    string    `json: "number"`
-	District  string    `json: "district"`
-	Id_City   string    `json: "id_city"`
-	Contact   string    `json: "contact"`
-	Cell      string    `json: "cell"`
-	Email     string    `json: "email,omitempty"`
-	Senha     string    `json: "senha,omitempty"`
-	Inclusion string    `json: "inclusion,omitempty"`
+	ID        uint64 `json: "id,omitempty"`
+	Nome      string `json: "nome,omitempty"`
+	Type_User string `json: "type_user,omitempty"`
+	Nick      string `json: "nick,omitempty"`
+	Cpf       string `json: "cpf"`
+	Id_Anac   string `json: "id_anac,omitempty"`
+	//	Cma       time.Time `json: "cma"`
+	Address   string `json: "address"`
+	Number    string `json: "number"`
+	District  string `json: "district"`
+	Id_City   string `json: "id_city"`
+	Contact   string `json: "contact"`
+	Cell      string `json: "cell"`
+	Email     string `json: "email,omitempty"`
+	Senha     string `json: "senha,omitempty"`
+	Inclusion string `json: "inclusion,omitempty"`
 }
 
 // Prepara vai chamar is métodos para validar e formatar o usuário recebido
