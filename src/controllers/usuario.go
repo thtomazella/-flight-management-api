@@ -12,7 +12,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -56,7 +55,7 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 
 // BuscarUsuarios retorna todos usuarios
 func BuscarUsuarios(w http.ResponseWriter, r *http.Request) {
-	nomeOuNick := strings.ToLower(r.URL.Query().Get("usuario"))
+	// nomeOuNick := strings.ToLower(r.URL.Query().Get("usuario"))
 
 	db, erro := database.Conectar()
 	if erro != nil {
@@ -66,7 +65,7 @@ func BuscarUsuarios(w http.ResponseWriter, r *http.Request) {
 
 	repositorio := repository.NovoRepositoDeUsuarios(db)
 
-	usuarios, erro := repositorio.Buscar(nomeOuNick)
+	usuarios, erro := repositorio.BuscarTodos(1)
 	if erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
 	}
@@ -91,7 +90,7 @@ func BuscarUsuario(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	repositorio := repository.NovoRepositoDeUsuarios(db)
-	usuario, erro := repositorio.BuscarPorID(usuarioID)
+	usuario, erro := repositorio.BuscarPorCANAC(usuarioID)
 	if erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
 	}
@@ -142,7 +141,7 @@ func AtualizandoUsuario(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer bd.Close()
-
+	// fmt.Println(usuarioID, usuario)
 	repositorio := repository.NovoRepositoDeUsuarios(bd)
 	if erro = repositorio.Atualizar(usuarioID, usuario); erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
