@@ -121,7 +121,7 @@ func (repositorio Usuarios) BuscarTodos(codInt int) ([]models.Usuario, error) {
 
 // BuscarPorANAC retorna os dados de um usuário específico por ID ANAC
 func (repositorio Usuarios) BuscarPorCANAC(ID uint64) (models.Usuario, error) {
-	linhas, erro := repositorio.db.Query("SELECT id, nome, id_anac, nick, email, inclusion from usuarios where Id_Anac= ?", ID)
+	linhas, erro := repositorio.db.Query("SELECT id, nome, id_anac, nick, email, inclusion from usuario where Id_Anac= ?", ID)
 	if erro != nil {
 		return models.Usuario{}, erro
 	}
@@ -145,7 +145,7 @@ func (repositorio Usuarios) BuscarPorCANAC(ID uint64) (models.Usuario, error) {
 // Atualizar  altera as informações de um usuário no banco de dados
 func (repositorio Usuarios) Atualizar(ID uint64, usuario models.Usuario) error {
 	fmt.Println(ID, usuario)
-	statement, erro := repositorio.db.Prepare("UPDATE usuarios SET nome= ?, type_user = ?, nick = ?, email = ? WHERE id = ?")
+	statement, erro := repositorio.db.Prepare("UPDATE usuario SET nome= ?, type_user = ?, nick = ?, email = ? WHERE id = ?")
 
 	/*
 	 cpf = ?,
@@ -189,7 +189,7 @@ func (repositorio Usuarios) Atualizar(ID uint64, usuario models.Usuario) error {
 
 //  Deletar excluir as informações de um usuario no banco de dados
 func (repositorio Usuarios) Deletar(ID uint64) error {
-	statement, erro := repositorio.db.Prepare("DELETE FROM usuarios WHERE id= ?")
+	statement, erro := repositorio.db.Prepare("DELETE FROM usuario WHERE id= ?")
 	if erro != nil {
 		return erro
 	}
@@ -203,7 +203,7 @@ func (repositorio Usuarios) Deletar(ID uint64) error {
 
 // BuscarPorEmail busca usuário por email e retorna o seu ID e senha com HASH
 func (repositorio Usuarios) BuscarPorEmail(email string) (models.Usuario, error) {
-	linha, erro := repositorio.db.Query("SELECT id, senha FROM usuarios WHERE email = ?", email)
+	linha, erro := repositorio.db.Query("SELECT id, senha FROM usuario WHERE email = ?", email)
 	if erro != nil {
 		return models.Usuario{}, nil
 	}
@@ -220,7 +220,7 @@ func (repositorio Usuarios) BuscarPorEmail(email string) (models.Usuario, error)
 
 // BuscaSenha traz a senha de um usuário pelo ID
 func (repositorio Usuarios) BuscarSenha(usuarioID uint64) (string, error) {
-	linha, erro := repositorio.db.Query("SELECT senha FROM usuarios WHERE id= ?", usuarioID)
+	linha, erro := repositorio.db.Query("SELECT senha FROM usuario WHERE id= ?", usuarioID)
 	if erro != nil {
 		return "", erro
 	}
@@ -238,7 +238,7 @@ func (repositorio Usuarios) BuscarSenha(usuarioID uint64) (string, error) {
 
 // AtualizarSenha altera a senha de um usuario
 func (repositorio Usuarios) AtualizarSenha(usuarioID uint64, senha string) error {
-	statement, erro := repositorio.db.Prepare("UPDATE usuarios SET senha =? WHERE id = ?")
+	statement, erro := repositorio.db.Prepare("UPDATE usuario SET senha =? WHERE id = ?")
 	if erro != nil {
 		return erro
 	}
