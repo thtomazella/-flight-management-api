@@ -145,7 +145,9 @@ func (repositorio Usuarios) BuscarPorCANAC(ID uint64) (models.Usuario, error) {
 // Atualizar  altera as informações de um usuário no banco de dados
 func (repositorio Usuarios) Atualizar(ID uint64, usuario models.Usuario) error {
 	fmt.Println(ID, usuario)
-	statement, erro := repositorio.db.Prepare("UPDATE usuario SET nome= ?, type_user = ?, nick = ?, email = ? WHERE id = ?")
+	statement, erro := repositorio.db.Prepare(`
+	UPDATE usuario SET nome= ?, type_user = ?, nick = ?, email = ? WHERE id = ?`
+	)
 
 	/*
 	 cpf = ?,
