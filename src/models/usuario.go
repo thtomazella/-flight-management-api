@@ -16,7 +16,7 @@ type Usuario struct {
 	Nick      string `json: "nick,omitempty"`
 	Cpf       string `json: "cpf"`
 	Id_Anac   string `json: "id_anac,omitempty"`
-	//	Cma       time.Time `json: "cma"`
+	Cma       string `json: "cma"`
 	Address   string `json: "address"`
 	Number    string `json: "number"`
 	District  string `json: "district"`
