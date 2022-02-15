@@ -19,14 +19,17 @@ func NovoRepositoDeUsuarios(db *sql.DB) *Usuarios {
 // Criar insere um usuario no bando de dados
 func (repositorio Usuarios) Criar(usuario models.Usuario) (uint64, error) {
 	statement, erro := repositorio.db.Prepare(
-		"INSERT INTO usuario(nome, type_user, nick, id_anac, email, senha) VALUES(?, ?, ?, ?, ?, ?)",
+		`INSERT INTO usuario(nome, type_user, nick, id_anac, email, senha, cma, cpf, address, number, district, id_city, contact, cell) 
+		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 	)
 	if erro != nil {
 		return 0, erro
 	}
 	defer statement.Close()
 
-	resultado, erro := statement.Exec(usuario.Nome, usuario.Type_User, usuario.Nick, usuario.Id_Anac, usuario.Email, usuario.Senha)
+	resultado, erro := statement.Exec(usuario.Nome, usuario.Type_User, usuario.Nick, usuario.Id_Anac, usuario.Email, usuario.Senha,
+		usuario.Cma, usuario.Cpf, usuario.Address, usuario.Number, usuario.District, usuario.Id_City, usuario.Contact, usuario.Cell)
+
 	if erro != nil {
 		return 0, erro
 	}
@@ -72,7 +75,25 @@ func (repositorio Usuarios) Buscar(nomeOuNick string) ([]models.Usuario, error) 
 // Buscar retorna todos os usuarios de nome ou nick
 func (repositorio Usuarios) BuscarTodos(codInt int) ([]models.Usuario, error) {
 
-	linhas, erro := repositorio.db.Query("SELECT id, nome, nick, id_Anac, email, inclusion FROM usuario WHERE id >= ? ORDER BY nome", codInt)
+	linhas, erro := repositorio.db.Query(`
+	SELECT id, 
+		   nome, 
+		   type_user,
+		   id_anac,
+		   nick, 
+		   email, 
+		   cma,
+		   cpf,
+		   address,
+		   number,
+		   district,
+		   id_city,
+		   contact,
+		   cell, 				   
+		   inclusion 
+	  FROM usuario 
+	  WHERE id >= ? ORDER BY nome`, codInt)
+
 	if erro != nil {
 		return nil, erro
 	}
@@ -84,9 +105,18 @@ func (repositorio Usuarios) BuscarTodos(codInt int) ([]models.Usuario, error) {
 
 		if erro = linhas.Scan(&usuario.ID,
 			&usuario.Nome,
-			&usuario.Nick,
+			&usuario.Type_User,
 			&usuario.Id_Anac,
+			&usuario.Nick,
 			&usuario.Email,
+			&usuario.Cma,
+			&usuario.Cpf,
+			&usuario.Address,
+			&usuario.Number,
+			&usuario.District,
+			&usuario.Id_City,
+			&usuario.Contact,
+			&usuario.Cell,
 			&usuario.Inclusion); erro != nil {
 			return nil, erro
 		}
@@ -96,32 +126,25 @@ func (repositorio Usuarios) BuscarTodos(codInt int) ([]models.Usuario, error) {
 
 }
 
-// BuscarPorID retorna os dados de um usuário específico
-/*func (repositorio Usuarios) BuscarPorID(ID uint64) (models.Usuario, error) {
-	linhas, erro := repositorio.db.Query("SELECT id, nome, id_anac, nick, email, inclusion from usuarios where id= ?", ID)
-	if erro != nil {
-		return models.Usuario{}, erro
-	}
-	defer linhas.Close()
-
-	var usuario models.Usuario
-
-	if linhas.Next() {
-		if erro = linhas.Scan(&usuario.ID,
-			&usuario.Nome,
-			&usuario.Nick,
-			&usuario.Id_Anac,
-			&usuario.Email,
-			&usuario.Inclusion); erro != nil {
-			return models.Usuario{}, erro
-		}
-	}
-	return usuario, nil
-}*/
-
 // BuscarPorANAC retorna os dados de um usuário específico por ID ANAC
 func (repositorio Usuarios) BuscarPorCANAC(ID uint64) (models.Usuario, error) {
-	linhas, erro := repositorio.db.Query("SELECT id, nome, id_anac, nick, email, inclusion from usuario where Id_Anac= ?", ID)
+	linhas, erro := repositorio.db.Query(`
+			SELECT id, 
+				   nome, 
+				   type_user,
+				   id_anac,
+				   nick, 
+				   email, 
+				   cma,
+				   cpf,
+				   address,
+				   number,
+				   district,
+				   id_city,
+				   contact,
+				   cell, 				   
+				   inclusion 
+			  FROM usuario where Id_Anac= ?`, ID)
 	if erro != nil {
 		return models.Usuario{}, erro
 	}
@@ -132,9 +155,18 @@ func (repositorio Usuarios) BuscarPorCANAC(ID uint64) (models.Usuario, error) {
 	if linhas.Next() {
 		if erro = linhas.Scan(&usuario.ID,
 			&usuario.Nome,
-			&usuario.Nick,
+			&usuario.Type_User,
 			&usuario.Id_Anac,
+			&usuario.Nick,
 			&usuario.Email,
+			&usuario.Cma,
+			&usuario.Cpf,
+			&usuario.Address,
+			&usuario.Number,
+			&usuario.District,
+			&usuario.Id_City,
+			&usuario.Contact,
+			&usuario.Cell,
 			&usuario.Inclusion); erro != nil {
 			return models.Usuario{}, erro
 		}
@@ -144,20 +176,22 @@ func (repositorio Usuarios) BuscarPorCANAC(ID uint64) (models.Usuario, error) {
 
 // Atualizar  altera as informações de um usuário no banco de dados
 func (repositorio Usuarios) Atualizar(ID uint64, usuario models.Usuario) error {
-	fmt.Println(ID, usuario)
-	statement, erro := repositorio.db.Prepare("UPDATE usuario SET nome= ?, type_user = ?, nick = ?, email = ? WHERE id = ?")
+	statement, erro := repositorio.db.Prepare(`
+	UPDATE usuario SET nome= ?, 
+		type_user = ?, 
+		nick = ?, 
+		email = ?,
+	 	cma = ?,
+	 	cpf = ?,
+	 	id_anac = ?,
+	 	address = ?,
+		number = ?,
+		district = ?,
+		id_city = ?,
+		contact= ?,
+		cell = ?
+		WHERE id = ?`)
 
-	/*
-	 cpf = ?,
-	 id_anac = ?,
-	 address = ?,
-	 district = ?,
-	 id_city = ?,
-	 contact= ?,
-	 cell = ?,
-	 email = ?
-
-	*/
 	if erro != nil {
 		return erro
 	}
@@ -168,23 +202,20 @@ func (repositorio Usuarios) Atualizar(ID uint64, usuario models.Usuario) error {
 		usuario.Type_User,
 		usuario.Nick,
 		usuario.Email,
+		usuario.Cma,
+		usuario.Cpf,
+		usuario.Id_Anac,
+		usuario.Address,
+		usuario.Number,
+		usuario.District,
+		usuario.Id_City,
+		usuario.Contact,
+		usuario.Cell,
 		ID); erro != nil {
 		return erro
 
-		/**
-		  usuario.Cpf,
-		  		usuario.Id_Anac,
-		  		usuario.Address,
-		  		usuario.District,
-		  		usuario.Id_City,
-		  		usuario.Contact,
-		  		usuario.Cell,
-		  		usuario.Email,
-		*/
-
 	}
 	return nil
-
 }
 
 //  Deletar excluir as informações de um usuario no banco de dados
