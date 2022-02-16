@@ -174,6 +174,25 @@ func (repositorio Usuarios) BuscarPorCANAC(ID uint64) (models.Usuario, error) {
 	return usuario, nil
 }
 
+// BuscarPorANAC retorna os dados de um usuário específico por ID ANAC
+func (repositorio Usuarios) BuscarPor_CANAC_Email(_cAnac, _email string) (string, error) {
+	linha, erro := repositorio.db.Query(`
+			SELECT id
+			  FROM usuario where Id_Anac= ? or email = ?`, _cAnac, _email)
+	if erro != nil {
+		return "NO", erro
+	}
+	defer linha.Close()
+
+	// var usuario models.Usuario
+	if linha.Next() {
+		return "YES", nil
+	} else {
+		return "NO", nil
+	}
+
+}
+
 // Atualizar  altera as informações de um usuário no banco de dados
 func (repositorio Usuarios) Atualizar(ID uint64, usuario models.Usuario) error {
 	statement, erro := repositorio.db.Prepare(`
