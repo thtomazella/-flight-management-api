@@ -96,7 +96,7 @@ func (repositorio Aeroportos) BuscarTodos(codInt int) ([]models.Aeroporto, error
 
 }
 
-// BuscarPorANAC retorna os dados de um usuário específico por ID ANAC
+// BuscarPorANAC retorna os dados de um aeroporto por sigla ou nome
 func (repositorio Aeroportos) BuscarTodosPorDescricaoSigla(_descricao string) ([]models.Aeroporto, error) {
 	_descricao = fmt.Sprintf("%%%s%%", _descricao)
 	linhas, erro := repositorio.db.Query(`
@@ -122,7 +122,7 @@ func (repositorio Aeroportos) BuscarTodosPorDescricaoSigla(_descricao string) ([
 
 }
 
-// BuscarPorANAC retorna os dados de um usuário específico por ID ANAC
+// BuscarAeroportoUnico retorna os dados de um aeroporto específico por ID
 func (repositorio Aeroportos) BuscarAeroportoUnico(_ID uint64) (models.Aeroporto, error) {
 	linha, erro := repositorio.db.Query(`
 			SELECT id, nome, sigla
