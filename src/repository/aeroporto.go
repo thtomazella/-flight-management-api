@@ -121,3 +121,26 @@ func (repositorio Aeroportos) BuscarTodosPorDescricaoSigla(_descricao string) ([
 	return aeroportos, nil
 
 }
+
+// BuscarPorANAC retorna os dados de um usuário específico por ID ANAC
+func (repositorio Aeroportos) BuscarAeroportoUnico(_ID uint64) (models.Aeroporto, error) {
+	linha, erro := repositorio.db.Query(`
+			SELECT id, nome, sigla
+			  FROM aeroporto where id = ? `, _ID)
+	if erro != nil {
+		return models.Aeroporto{}, erro
+	}
+	defer linha.Close()
+
+	var aeroporto models.Aeroporto
+
+	if linha.Next() {
+		if erro = linha.Scan(&aeroporto.ID,
+			&aeroporto.Nome,
+			&aeroporto.Sigla); erro != nil {
+			return models.Aeroporto{}, erro
+		}
+	}
+	return aeroporto, nil
+
+}
