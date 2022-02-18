@@ -32,4 +32,11 @@ var rotasAeroporto = []Rota{
 		Funcao:             controllers.BuscarAeroportosPorDescricao,
 		RequerAutenticacao: true,
 	},
+
+	{ // Busca Aeroporto por ID
+		URI:                "/aeroporto/id/{aeroportoId}",
+		Metodo:             http.MethodGet,
+		Funcao:             controllers.BuscarAeroporto,
+		RequerAutenticacao: true,
+	},
 }

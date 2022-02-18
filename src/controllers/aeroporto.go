@@ -143,3 +143,29 @@ func BuscarAeroportosPorDescricao(w http.ResponseWriter, r *http.Request) {
 	response.JSON(w, http.StatusOK, usuarios)
 
 }
+
+// BuscarAeroporto retorna o aeroporto por ID
+func BuscarAeroporto(w http.ResponseWriter, r *http.Request) {
+
+	parametros := mux.Vars(r)
+
+	aeroportoID, erro := strconv.ParseUint(parametros["aeroportoId"], 10, 64)
+	if erro != nil {
+		response.Erro(w, http.StatusBadRequest, erro)
+	}
+
+	db, erro := database.Conectar()
+	if erro != nil {
+		response.Erro(w, http.StatusInternalServerError, erro)
+	}
+	defer db.Close()
+
+	repositorio := repository.NovoRepositoDeAeroportos(db)
+
+	usuarios, erro := repositorio.BuscarAeroportoUnico(aeroportoID)
+	if erro != nil {
+		response.Erro(w, http.StatusInternalServerError, erro)
+	}
+
+	response.JSON(w, http.StatusOK, usuarios)
+}
