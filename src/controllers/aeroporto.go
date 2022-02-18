@@ -6,11 +6,9 @@ import (
 	"flight/src/models"
 	"flight/src/repository"
 	"flight/src/response"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -124,9 +122,11 @@ func BuscarAeroportos(w http.ResponseWriter, r *http.Request) {
 
 // BuscarAeroportosPorDescricao retorna todos aeroportos por descricao ou sigla
 func BuscarAeroportosPorDescricao(w http.ResponseWriter, r *http.Request) {
-	descricaoAeroporto := strings.ToLower(r.URL.Query().Get("descricao"))
 
-	fmt.Println(descricaoAeroporto)
+	parametros := mux.Vars(r)
+	descricaoAeroporto := parametros["descricao"]
+	//descricaoAeroporto := strings.ToLower(r.URL.Query().Get("descricao"))
+
 	db, erro := database.Conectar()
 	if erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
