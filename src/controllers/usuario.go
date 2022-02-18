@@ -9,7 +9,6 @@ import (
 	"flight/src/repository"
 	"flight/src/response"
 	"flight/src/security"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -132,7 +131,6 @@ func AtualizandoUsuario(w http.ResponseWriter, r *http.Request) {
 	var usuario models.Usuario
 
 	if erro = json.Unmarshal(corpoRequisicao, &usuario); erro != nil {
-		fmt.Println("!")
 		response.Erro(w, http.StatusBadRequest, erro)
 		return
 	}
