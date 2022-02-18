@@ -100,8 +100,8 @@ func (repositorio Aeroportos) BuscarTodos(codInt int) ([]models.Aeroporto, error
 func (repositorio Aeroportos) BuscarTodosPorDescricaoSigla(_descricao string) ([]models.Aeroporto, error) {
 	_descricao = fmt.Sprintf("%%%s%%", _descricao)
 	linhas, erro := repositorio.db.Query(`
-			SELECT nome, sigla
-			  FROM aeroporto where sigla = ?`, _descricao)
+			SELECT id, nome, sigla
+			  FROM aeroporto where sigla like ? or nome like ?`, _descricao, _descricao)
 	if erro != nil {
 		return nil, erro
 	}
