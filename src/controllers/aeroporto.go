@@ -62,7 +62,7 @@ func CriarAeroporto(w http.ResponseWriter, r *http.Request) {
 	response.JSON(w, http.StatusCreated, aeroporto)
 }
 
-// AtualizandoAeroporto altera as informacoes de somente um usuario
+// AtualizandoAeroporto altera as informacoes de somente um aeroporto
 func AtualizandoAeroporto(w http.ResponseWriter, r *http.Request) {
 	parametros := mux.Vars(r)
 	aeroportoID, erro := strconv.ParseUint(parametros["aeroportoId"], 10, 64)
@@ -117,12 +117,12 @@ func BuscarAeroportos(w http.ResponseWriter, r *http.Request) {
 
 	repositorio := repository.NovoRepositoDeAeroportos(db)
 
-	usuarios, erro := repositorio.BuscarTodos(1)
+	aeroportos, erro := repositorio.BuscarTodos(1)
 	if erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
 	}
 
-	response.JSON(w, http.StatusOK, usuarios)
+	response.JSON(w, http.StatusOK, aeroportos)
 }
 
 // BuscarAeroportosPorDescricao retorna todos aeroportos por descricao ou sigla
@@ -140,12 +140,12 @@ func BuscarAeroportosPorDescricao(w http.ResponseWriter, r *http.Request) {
 
 	repositorio := repository.NovoRepositoDeAeroportos(db)
 
-	usuarios, erro := repositorio.BuscarTodosPorDescricaoSigla(descricaoAeroporto)
+	aeroportos, erro := repositorio.BuscarTodosPorDescricaoSigla(descricaoAeroporto)
 	if erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
 	}
 
-	response.JSON(w, http.StatusOK, usuarios)
+	response.JSON(w, http.StatusOK, aeroportos)
 
 }
 
@@ -167,10 +167,10 @@ func BuscarAeroporto(w http.ResponseWriter, r *http.Request) {
 
 	repositorio := repository.NovoRepositoDeAeroportos(db)
 
-	usuarios, erro := repositorio.BuscarAeroportoUnico(aeroportoID)
+	aeroportos, erro := repositorio.BuscarAeroportoUnico(aeroportoID)
 	if erro != nil {
 		response.Erro(w, http.StatusInternalServerError, erro)
 	}
 
-	response.JSON(w, http.StatusOK, usuarios)
+	response.JSON(w, http.StatusOK, aeroportos)
 }

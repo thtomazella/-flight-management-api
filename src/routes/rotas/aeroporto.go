@@ -12,6 +12,7 @@ var rotasAeroporto = []Rota{
 		Funcao:             controllers.CriarAeroporto,
 		RequerAutenticacao: true,
 	},
+	
 	{ //Alterar o aeroporto por ID
 		URI:                "/aeroporto/{aeroportoId}",
 		Metodo:             http.MethodPut,
