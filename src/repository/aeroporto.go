@@ -144,3 +144,20 @@ func (repositorio Aeroportos) BuscarAeroportoUnico(_ID uint64) (models.Aeroporto
 	return aeroporto, nil
 
 }
+
+//BuscarPorSigla_Duplicado para bloqueio de registro duplicado
+func (repositorio Aeroportos) BuscarPorSigla_Duplicado(_sigla string) string {
+	linha, erro := repositorio.db.Query(`
+			SELECT id
+			  FROM aeroporto where sigla= ? `, _sigla)
+	if erro != nil {
+		return "NO"
+	}
+	defer linha.Close()
+
+	if linha.Next() {
+		return "YES"
+	} else {
+		return "NO"
+	}
+}
