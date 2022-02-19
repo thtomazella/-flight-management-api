@@ -34,7 +34,7 @@ var rotasUsuarios = []Rota{
 		RequerAutenticacao: true,
 	},
 
-	{
+	{ //Alterar a senha do usuario logado
 		URI:                "/usuarios/{usuarioId}/atualizar-senha",
 		Metodo:             http.MethodPost,
 		Funcao:             controllers.AtualizarSenha,

@@ -36,6 +36,45 @@
 					"response": []
 				},
 				{
+					"name": "001 - Update Senha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"Nova\": \"123\",\n    \"Atual\":\"1234\"\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/usuarios/1/atualizar-senha",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"usuarios",
+								"1",
+								"atualizar-senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "001 - Update User 1",
 					"request": {
 						"auth": {
@@ -74,7 +113,7 @@
 					"response": []
 				},
 				{
-					"name": "001 - Update Senha",
+					"name": "003 - Update Use 2",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -86,11 +125,11 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\n{\n    \"Nova\": \"123\",\n    \"Atual\":\"1234\"\n}\n\n",
+							"raw": "{\n    \"Nome\": \"Thiago TOMAZELLA\",\n    \"Type_user\":\"INVA\",\n    \"Nick\":\"THT\",\n    \"Id_anac\":\"163050\",\n    \"Email\":\"th@gmail\",\n    \"Cma\" :\"2022-12-11\",\n    \"Cpf\" :\"30442018886\",  \n    \"Address\" :\"RUA 10\",\n    \"Number\" :\"999\",    \n    \"District\": \"BAIRRO\",\n    \"Id_city\" :\"00001\" ,\n    \"Contact\":\"THIAGO\" ,\n    \"Cell\" : \"19997222048\"\n    } \n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -98,15 +137,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/usuarios/1/atualizar-senha",
+							"raw": "localhost:5000/usuarios/2",
 							"host": [
 								"localhost"
 							],
 							"port": "5000",
 							"path": [
 								"usuarios",
-								"1",
-								"atualizar-senha"
+								"2"
 							]
 						}
 					},
@@ -241,44 +279,6 @@
 			"name": "AIRPORT",
 			"item": [
 				{
-					"name": "003 - Update Airport SDRK",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"Nome\": \"Thiago TOMAZELLA\",\n    \"Type_user\":\"INVA\",\n    \"Nick\":\"THT\",\n    \"Id_anac\":\"163050\",\n    \"Email\":\"th@gmail\",\n    \"Cma\" :\"2022-12-11\",\n    \"Cpf\" :\"30442018886\",  \n    \"Address\" :\"RUA 10\",\n    \"Number\" :\"999\",    \n    \"District\": \"BAIRRO\",\n    \"Id_city\" :\"00001\" ,\n    \"Contact\":\"THIAGO\" ,\n    \"Cell\" : \"19997222048\"\n    } \n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:5000/usuarios/2",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"usuarios",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "003 - Insert Airport SDRK",
 					"request": {
 						"auth": {
@@ -384,6 +384,44 @@
 							"port": "5000",
 							"path": [
 								"aeroporto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003 - Update Airport SDRK",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"RIO CLARO\",\n    \"Sigla\":\"SDRK\"\n} \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/aeroporto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"aeroporto",
+								"1"
 							]
 						}
 					},
@@ -507,6 +545,241 @@
 								"aeroporto",
 								"id",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AIRCRAFT",
+			"item": [
+				{
+					"name": "004 - Insert Aircraft PPRSI",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"PIPER J3\",\n    \"Prefixo\":\"PPRSI\",\n    \"Preco\": 1.65,\n    \"Custo\": 1.6\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/aeronave",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"aeronave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - Insert Aircraft PPHRS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"PAULISTÃO\",\n    \"Prefixo\":\"PPHRS\",\n    \"Preco\": 564.50,\n    \"Custo\": 450.65 \n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/aeronave",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"aeronave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - Insert Aircraft PPFLF",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"AERO BOERO 115\",\n    \"Prefixo\":\"PPFLF\",\n    \"Preco\": 380.50,\n    \"Custo\": 280.65 \n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/aeronave",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"aeronave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - Update Aircraft PPFLF",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"AB 115\",\n    \"Prefixo\":\"PPFLF\",\n    \"Preco\": 380.50,\n    \"Custo\": 280.65 \n} \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/aeronave/3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"aeronave",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - All Aircraft",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/aeronave",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"aeronave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - Only prefix",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/aeronave/PPRSI",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"aeronave",
+								"PPRSI"
 							]
 						}
 					},
