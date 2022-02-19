@@ -39,3 +39,20 @@ func (repositorio Aeronave) Criar(aeronave models.Aeronave) (uint64, error) {
 	return uint64(ultimoIDInserido), nil
 
 }
+
+//BuscarPorPrefixo para bloqueio de registro duplicado
+func (repositorio Aeronave) BuscarPorPrefixo_Duplicado(_prefixo string) string {
+	linha, erro := repositorio.db.Query(`
+			SELECT id
+			  FROM aeronave where prefixo= ? `, _prefixo)
+	if erro != nil {
+		return "NO"
+	}
+	defer linha.Close()
+
+	if linha.Next() {
+		return "YES"
+	} else {
+		return "NO"
+	}
+}

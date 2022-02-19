@@ -44,13 +44,12 @@ func CriarAeronave(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	/* -- COLOCAR DUPLICIDADE DE AEROPORTO
-	repositorioDuplicado := repository.NovoRepositoDeUsuarios(db)
-	if codAnacLancto, _ := repositorioDuplicado.BuscarPor_CANAC_Email(usuario.Id_Anac, usuario.Email); codAnacLancto == "YES" {
-		response.Erro(w, http.StatusBadRequest, errors.New(" Registro já informado para este EMAIL ou CANAC! Por favor verifique. "))
+	repositorioDuplicado := repository.NovoRepositoDeAeronave(db)
+	if codAeronaveDuplicada := repositorioDuplicado.BuscarPorPrefixo_Duplicado(aeronave.Prefixo); codAeronaveDuplicada == "YES" {
+		response.Erro(w, http.StatusBadRequest, errors.New(" PREFIXO já informado! Operação Bloqueada. "))
 		return
-	}*/
-
+	}
+	
 	repositorio := repository.NovoRepositoDeAeronave(db)
 	aeronave.ID, erro = repositorio.Criar(aeronave)
 	if erro != nil {
