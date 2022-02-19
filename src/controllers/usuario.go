@@ -25,6 +25,11 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if !json.Valid([]byte(corpoRequest)) {
+		response.Erro(w, http.StatusBadRequest, errors.New(" Registro enviado para servidor não compativel com o sistema. "))
+		return
+	}
+
 	var usuario models.Usuario
 	if erro = json.Unmarshal(corpoRequest, &usuario); erro != nil {
 		response.Erro(w, http.StatusBadRequest, erro)
