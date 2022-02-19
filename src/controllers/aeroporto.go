@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"errors"
 	"flight/src/database"
 	"flight/src/models"
 	"flight/src/repository"
@@ -19,6 +20,11 @@ func CriarAeroporto(w http.ResponseWriter, r *http.Request) {
 
 	if erro != nil {
 		response.Erro(w, http.StatusUnprocessableEntity, erro)
+		return
+	}
+
+	if !json.Valid([]byte(corpoRequest)) {
+		response.Erro(w, http.StatusBadRequest, errors.New(" Registro enviado para servidor não compativel com o sistema. "))
 		return
 	}
 

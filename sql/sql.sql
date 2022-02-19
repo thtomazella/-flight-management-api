@@ -32,8 +32,6 @@ CREATE TABLE  usuario(
     inclusion 	TIMESTAMP   DEFAULT current_timestamp()
  )ENGINE=INNODB;
 
-DROP TABLE IF EXISTS aeroporto;
-
 
 DROP TABLE IF EXISTS aeroporto;
 
@@ -41,5 +39,16 @@ CREATE TABLE  aeroporto(
     id       	INT           auto_increment primary key,
 	nome      	VARCHAR(200)  NOT NULL, 
 	sigla   	VARCHAR(20)   NOT NULL,
+    inclusion 	TIMESTAMP   DEFAULT current_timestamp()
+ )ENGINE=INNODB;
+
+ DROP TABLE IF EXISTS aeronave;
+
+CREATE TABLE  aeronave(
+    id       	INT           auto_increment primary key,
+	nome      	VARCHAR(200)  NOT NULL, 
+	prefixo   	VARCHAR(20)   NOT NULL,
+	custo   	DOUBLE(10,2)  DEFAULT '0.00',
+	preco   	DOUBLE(10,2)  DEFAULT '0.00',
     inclusion 	TIMESTAMP   DEFAULT current_timestamp()
  )ENGINE=INNODB;
