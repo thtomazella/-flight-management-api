@@ -123,7 +123,7 @@ func AtualizandoUsuario(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if usuarioID != usarioIDNoToken {
-		response.Erro(w, http.StatusForbidden, errors.New("Não é possível atualizar um usuário que não seja o seu"))
+		response.Erro(w, http.StatusForbidden, errors.New(" Não é possível atualizar um usuário que não seja o seu! "))
 		return
 	}
 
@@ -178,9 +178,9 @@ func AtualizarSenha(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if usuarioIDNoToken != usuarioID {
-		response.Erro(w, http.StatusForbidden, errors.New("Não é possível atualizar a senha de uma usuário diferente do seu"))
+		response.Erro(w, http.StatusForbidden, errors.New(" Não é possível atualizar a senha de uma usuário diferente do seu "))
 	}
-	corpoRequisicao, erro := ioutil.ReadAll(r.Body)
+	corpoRequisicao, _ := ioutil.ReadAll(r.Body)
 
 	var senha models.Senha
 	if erro = json.Unmarshal(corpoRequisicao, &senha); erro != nil {
@@ -201,8 +201,9 @@ func AtualizarSenha(w http.ResponseWriter, r *http.Request) {
 		response.Erro(w, http.StatusInternalServerError, erro)
 		return
 	}
+
 	if erro = security.VerificarSenha(senhaSalvaNodatabase, senha.Atual); erro != nil {
-		response.Erro(w, http.StatusInternalServerError, errors.New("A Senha atual não codiz com a que está atual"))
+		response.Erro(w, http.StatusInternalServerError, errors.New(" A Senha atual não codiz com a que está atual! "))
 		return
 	}
 
