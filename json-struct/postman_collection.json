@@ -786,6 +786,241 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "EQUIPMENT TYPE",
+			"item": [
+				{
+					"name": "005 - Insert Equipment AVIÃO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"AVIÃO\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoEquipamento",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoEquipamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - Insert Equipment PLANADOR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"PLANADOR\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoEquipamento",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoEquipamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - Insert Equipment SIMULADOR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"SIMULADOR\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoEquipamento",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoEquipamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - Update Equipment SIMULADOR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"SIMULADOR IFR\"\n} \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoEquipamento/3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoEquipamento",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - All Equipment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoEquipamento",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoEquipamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - Only One Equipment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoEquipamento/AVIÃO",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoEquipamento",
+								"AVIÃO"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

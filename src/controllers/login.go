@@ -44,7 +44,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	if erro = security.VerificarSenha(usuarioSalvoNoBanco.Senha, usuario.Senha); erro != nil {
 		// response.Erro(w, http.StatusUnauthorized, erro)
-		response.Erro(w, http.StatusInternalServerError, errors.New("Usuário ou senha não identificado!"))
+		response.Erro(w, http.StatusInternalServerError, errors.New(" Usuário ou senha não identificado! "))
 		return
 	}
 

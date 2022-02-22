@@ -21,6 +21,7 @@ func Configurar(r *mux.Router) *mux.Router {
 	rotas = append(rotas, rotaLogin)
 	rotas = append(rotas, rotasAeroporto...)
 	rotas = append(rotas, rotasAeronave...)
+	rotas = append(rotas, rotasTipoEquipamento...)
 
 	for _, rota := range rotas {
 		if rota.RequerAutenticacao {
