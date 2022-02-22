@@ -2,26 +2,26 @@
 
 Back-end development with go language (Golang) mysql database.
 
-*** Under development ***
+## Under development
 
 Implemented
 
--> Login
--> User
--> Aircraft
--> Airport
--> Kind of equipment
--> Type of flight
+- [x] Login
+- [x] User
+- [x] Aircraft
+- [x] Airport
+- [x] Kind of equipment
+- [x] Type of flight
 
-***/***
+======================
 
--> Authentication
--> Config
--> Controller
--> Database
--> Middlewares
--> Models
--> Repository
--> Response
--> Routes
--> Security
+- [x] Authentication
+- [x] Config
+- [x] Controller
+- [x] Database
+- [x] Middlewares
+- [x] Models
+- [x] Repository
+- [x] Response
+- [x] Routes
+- [x] Security
