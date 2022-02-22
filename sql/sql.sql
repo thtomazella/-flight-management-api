@@ -60,3 +60,11 @@ CREATE TABLE  tipoequipamento(
 	nome      	VARCHAR(200)  NOT NULL, 
     inclusion 	TIMESTAMP   DEFAULT current_timestamp()
  )ENGINE=INNODB;
+
+DROP TABLE IF EXISTS tipo_voo;
+
+CREATE TABLE  tipo_voo(
+    id       	INT           auto_increment primary key,
+	nome      	VARCHAR(200)  NOT NULL, 
+    inclusion 	TIMESTAMP   DEFAULT current_timestamp()
+ )ENGINE=INNODB;
