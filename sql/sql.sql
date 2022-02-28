@@ -68,3 +68,11 @@ CREATE TABLE  tipo_voo(
 	nome      	VARCHAR(200)  NOT NULL, 
     inclusion 	TIMESTAMP   DEFAULT current_timestamp()
  )ENGINE=INNODB;
+
+DROP TABLE IF EXISTS tipo_instrucao;
+
+CREATE TABLE  tipo_instrucao(
+    id       	INT           auto_increment primary key,
+	nome      	VARCHAR(200)  NOT NULL, 
+    inclusion 	TIMESTAMP   DEFAULT current_timestamp()
+ )ENGINE=INNODB;
