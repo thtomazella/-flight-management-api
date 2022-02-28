@@ -1,5 +1,5 @@
 {
-  "dependencies": {
-    "bcrypt": "^5.0.1"
+	"dependencies": {
+	  "bcrypt": "^5.0.1"
+	}
   }
-}

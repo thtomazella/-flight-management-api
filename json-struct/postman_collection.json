@@ -1021,6 +1021,476 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "FLIGHT TYPE",
+			"item": [
+				{
+					"name": "006 - Insert Flyght Type ALUNO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"ALUNO\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoVoo",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoVoo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Insert Flyght Type  SOCIO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"SOCIO\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoVoo",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoVoo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Insert Flyght Type ADAPTACAO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"ADAPTACAO\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoVoo",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoVoo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Update Flyght Type SOCIO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"SOCIO GERAL\"\n} \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoVoo/3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoVoo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - All Flyght",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoVoo",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoVoo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Only Flight ALUNO",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoVoo/ALUNO",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoVoo",
+								"ALUNO"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "INSTRUCTION TYPE",
+			"item": [
+				{
+					"name": "006 - Insert instruction Type PPA",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"PPA - PILOTO PRIVADO AVIÃO\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoInstrucao",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoInstrucao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Insert instruction Type  PCA",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"PCA - PILOTO COMERCIAL DE AVIÃO\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoInstrucao",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoInstrucao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Insert  instruction Type PPL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"PPL - PILOTO DE PLANADOR\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoInstrucao",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoInstrucao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Update  instruction Type PPL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"PPL - PILOTO DE PLANADOR - 1\"\n} \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoInstrucao/3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoInstrucao",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - All instruction Type",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoInstrucao",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoInstrucao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Only instruction Type PPA",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/tipoInstrucao/PPA",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tipoInstrucao",
+								"PPA"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
