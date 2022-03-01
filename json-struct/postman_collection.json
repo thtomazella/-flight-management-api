@@ -1491,6 +1491,241 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "GRADE",
+			"item": [
+				{
+					"name": "007 - Insert Grade SATISFATORIO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"03 - SATISFATÓRIO\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/nota",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"nota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007 - Insert Grade EXCELENTE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"05 - EXCELENTE\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/nota",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"nota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007 - Insert  Grade AP - APROVADO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"AP - APROVADO\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/nota",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"nota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007 - Update  Grade",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nome\": \"AP - APROVADO - 1\"\n} \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/nota/3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"nota",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007 - All Grades",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/nota",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"nota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007 - Only Grade",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/nota/AP",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"nota",
+								"AP"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

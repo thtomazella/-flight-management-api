@@ -76,3 +76,11 @@ CREATE TABLE  tipo_instrucao(
 	nome      	VARCHAR(200)  NOT NULL, 
     inclusion 	TIMESTAMP   DEFAULT current_timestamp()
  )ENGINE=INNODB;
+
+DROP TABLE IF EXISTS nota;
+
+CREATE TABLE  nota(
+    id       	INT           auto_increment primary key,
+	nome      	VARCHAR(200)  NOT NULL, 
+    inclusion 	TIMESTAMP   DEFAULT current_timestamp()
+ )ENGINE=INNODB;
