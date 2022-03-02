@@ -10,8 +10,9 @@ Implemented
 - [x] User
 - [x] Aircraft
 - [x] Airport
-- [x] Type of equipment
-- [x] Type of flight
+- [x] Equipment
+- [x] Flight
+- [x] Instruction
 - [x] Grades
 - [ ] Movement 
 
