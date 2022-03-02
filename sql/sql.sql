@@ -84,3 +84,25 @@ CREATE TABLE  nota(
 	nome      	VARCHAR(200)  NOT NULL, 
     inclusion 	TIMESTAMP   DEFAULT current_timestamp()
  )ENGINE=INNODB;
+
+
+DROP TABLE IF EXISTS movimentacao;
+
+CREATE TABLE  movimentacao(
+    id       	INT           auto_increment primary key,
+
+    tipoequipamento_id int not null,
+    FOREIGN KEY(tipoequipamento_id) REFERENCES tipoequipamento(id)  ON DELETE CASCADE,
+	
+	tipoinstrucao_id int not null,
+    FOREIGN KEY(tipoinstrucao_id) REFERENCES tipo_instrucao(id)  ON DELETE CASCADE,
+
+	nota_id int not null,
+    FOREIGN KEY(nota_id) REFERENCES nota(id)  ON DELETE CASCADE,
+
+	tipovoo_id int not null,
+    FOREIGN KEY(tipovoo_id) REFERENCES tipo_voo(id)  ON DELETE CASCADE,
+
+
+    inclusion 	TIMESTAMP   DEFAULT current_timestamp()
+ )ENGINE=INNODB;
