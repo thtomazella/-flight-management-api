@@ -12,6 +12,8 @@ Implemented
 - [x] Airport
 - [x] Kind of equipment
 - [x] Type of flight
+- [x] Grades
+- [ ] Movement 
 
 ======================
 
