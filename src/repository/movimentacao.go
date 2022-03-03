@@ -74,12 +74,31 @@ func (repositorio Movimentacoes) BuscarTodos(codInt int) ([]models.MovimentacaoR
 
 	linhas, erro := repositorio.db.Query(`
 	SELECT m.id,
-	       t.id as idEquip,
-		   t.nome as Equipamento
-	  FROM movimentacao m
-	  LEFT OUTER JOIN tipoequipamento t
-	    ON(m.tipoequipamento_id = t.id)
-	  WHERE m.id >= ? ORDER BY m.id`, codInt)
+		   tEquipamento.id as idEquip,
+		   tEquipamento.nome as Equipamento,
+		   tInstrucao.id as idInstrucao,
+		   tInstrucao.nome as Instrucao,
+		   nota.id as idnota,
+		   nota.nome as Nota,
+		   tVoo.id as idVoo,
+		   tVoo.nome as Voo,
+		   m.inclusion
+
+	FROM movimentacao m
+	  
+	LEFT OUTER JOIN tipoequipamento tEquipamento
+	    ON(m.tipoequipamento_id = tEquipamento.id)
+	  		
+	LEFT OUTER JOIN tipo_instrucao tInstrucao
+		ON(m.tipoinstrucao_id = tInstrucao.id)
+
+	LEFT OUTER JOIN nota
+		ON(m.nota_id = nota.id)
+
+	LEFT OUTER JOIN tipo_voo tVoo
+	    ON(m.tipovoo_id = tVoo.id)
+
+	WHERE m.id >= ? ORDER BY m.id`, codInt)
 
 	if erro != nil {
 		return nil, erro
@@ -93,7 +112,14 @@ func (repositorio Movimentacoes) BuscarTodos(codInt int) ([]models.MovimentacaoR
 
 		if erro = linhas.Scan(&movimentacao.ID,
 			&movimentacao.TipoEquipamento.ID,
-			&movimentacao.TipoEquipamento.Nome); erro != nil {
+			&movimentacao.TipoEquipamento.Nome,
+			&movimentacao.TipoInstrucao.ID,
+			&movimentacao.TipoInstrucao.Nome,
+			&movimentacao.Nota.ID,
+			&movimentacao.Nota.Nome,
+			&movimentacao.TipoVoo.ID,
+			&movimentacao.TipoVoo.Nome,
+			&movimentacao.Inclusion); erro != nil {
 			return nil, erro
 		}
 		movimentacoes = append(movimentacoes, movimentacao)
