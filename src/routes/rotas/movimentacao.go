@@ -21,9 +21,9 @@ var rotasMovimentacao = []Rota{
 	},
 
 	{ // Busca Todos as Movimentacao
-		URI:                "/movimentacao",
+		URI:                "/movimentacoes",
 		Metodo:             http.MethodGet,
-		Funcao:             controllers.BuscarMovimentacao,
+		Funcao:             controllers.BuscarMovimentacoes,
 		RequerAutenticacao: true,
 	},
 	{ // Busca Movimentacao por descricao

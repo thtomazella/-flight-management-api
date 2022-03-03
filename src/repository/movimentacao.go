@@ -70,24 +70,30 @@ func (repositorio Movimentacoes) Atualizar(ID uint64, movimentacao models.Movime
 }
 
 // BuscarTodos retorna todas as Movimentacoes
-func (repositorio Movimentacoes) BuscarTodos(codInt int) ([]models.Movimentacao, error) {
+func (repositorio Movimentacoes) BuscarTodos(codInt int) ([]models.MovimentacaoRetorno, error) {
 
 	linhas, erro := repositorio.db.Query(`
-	SELECT id
-	  FROM movimentacao
-	  WHERE id >= ? ORDER BY nome`, codInt)
+	SELECT m.id,
+	       t.id as idEquip,
+		   t.nome as Equipamento
+	  FROM movimentacao m
+	  LEFT OUTER JOIN tipoequipamento t
+	    ON(m.tipoequipamento_id = t.id)
+	  WHERE m.id >= ? ORDER BY m.id`, codInt)
 
 	if erro != nil {
 		return nil, erro
 	}
 	defer linhas.Close()
 
-	var movimentacoes []models.Movimentacao
+	var movimentacoes []models.MovimentacaoRetorno
 
 	for linhas.Next() {
-		var movimentacao models.Movimentacao
+		var movimentacao models.MovimentacaoRetorno
 
-		if erro = linhas.Scan(&movimentacao.ID); erro != nil {
+		if erro = linhas.Scan(&movimentacao.ID,
+			&movimentacao.TipoEquipamento.ID,
+			&movimentacao.TipoEquipamento.Nome); erro != nil {
 			return nil, erro
 		}
 		movimentacoes = append(movimentacoes, movimentacao)
