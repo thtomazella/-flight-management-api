@@ -27,10 +27,10 @@ func (aeroporto *Aeroporto) Preparar(etapa string) error {
 
 func (aeroporto *Aeroporto) validar(etapa string) error {
 	if aeroporto.Nome == "" {
-		return errors.New("O nome do aeroporto é obrigatório e não pode estar em branco.")
+		return errors.New(" O nome do aeroporto é obrigatório e não pode estar em branco. ")
 	}
 	if aeroporto.Sigla == "" {
-		return errors.New("A Sigla é obrigatório e não pode estar em branco.")
+		return errors.New(" A Sigla é obrigatório e não pode estar em branco. ")
 	}
 
 	return nil
