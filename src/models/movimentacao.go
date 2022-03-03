@@ -16,19 +16,29 @@ type Movimentacao struct {
 
 // MovimentacaoRetorno representa um estrutura da tabela de movimentacao / bd
 type MovimentacaoRetorno struct {
-	ID              uint64 `json: "id, omitempty"`
+	ID uint64 `json: "id, omitempty"`
+
 	TipoEquipamento struct {
 		ID   string `json:"ID"`
 		Nome string `json:"Nome"`
-	} `json:"tipo"`
+	} `json:"tipoEquipamento"`
 
-	TipoInstrucaoID uint64 `json: "tipoInstrucaoId, omitempty"`
-	TipoInstrucao   string `json: "tipoInstrucao, omitempty"`
-	NotaID          uint64 `json: "notaId, omitempty"`
-	Nota            string `json: "nota, omitempty"`
-	TipoVooID       uint64 `json: "tipoVooId, omitempty"`
-	TipoVoo         string `json: "tipoVoo, omitempty"`
-	Inclusion       string `json: "inclusion,omitempty"`
+	TipoInstrucao struct {
+		ID   string `json:"ID"`
+		Nome string `json:"Nome"`
+	} `json:"tipoInstrucao"`
+
+	Nota struct {
+		ID   string `json:"ID"`
+		Nome string `json:"Nome"`
+	} `json:"Nota"`
+
+	TipoVoo struct {
+		ID   string `json:"ID"`
+		Nome string `json:"Nome"`
+	} `json:"tipoVoo"`
+
+	Inclusion string `json: "inclusion,omitempty"`
 }
 
 // Prepara vai chamar is métodos para validar e formatar a nota recebida
