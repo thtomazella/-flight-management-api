@@ -12,8 +12,12 @@ import (
 var (
 	// StringConexaoBanco é a string de conexão com o MYSQL
 	StringConexaoBanco = ""
+
 	// Porta onde a API vai estar rodando
 	Porta = 0
+
+	// KEY para acesso ao REDEMET
+	SecretKey_Redemet = ""
 
 	// SecretKey é a chave que vai ser usada para assinar os tokens
 	SecretKey []byte
@@ -31,6 +35,8 @@ func Carregar() {
 	if erro != nil {
 		Porta = 9000
 	}
+
+	SecretKey_Redemet = os.Getenv("API_KEY_REDEMET")
 
 	StringConexaoBanco = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local",
 		os.Getenv("DB_USUARIO"),
