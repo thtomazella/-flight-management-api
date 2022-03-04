@@ -15,6 +15,9 @@ Implemented
 - [x] Instruction
 - [x] Grades
 - [ ] Movement 
+- [ ] Webserver
+  - [x] Airport
+  - [x] Metar
 
 ======================
 
@@ -28,3 +31,4 @@ Implemented
 - [x] Response
 - [x] Routes
 - [x] Security
+- [ ] Webserver
