@@ -18,6 +18,12 @@ var rotasWebService = []Rota{
 		Funcao:             webservice.BuscaAPI_Metar,
 		RequerAutenticacao: true,
 	},
+	{ // Rota referente a API Informacao do Aeroporto
+		URI:                "/api_aeroporto/{descricao}",
+		Metodo:             http.MethodGet,
+		Funcao:             webservice.BuscaAPI_InfoAeroporto,
+		RequerAutenticacao: true,
+	},
 
 	{ // Cadastro de uma aeronave
 		URI:                "/testeweb",
